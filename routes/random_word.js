@@ -33,7 +33,7 @@ router.get('/', function (req, res) {
             console.log("Status code: " + statusCode + " for: " + full_url);
 
             if (statusCode == 200) {
-                res.json(data);
+                res.send(data);
             } else {
                 console.error("problem with request for: " + full_url);
                 res.statusCode = 500;
