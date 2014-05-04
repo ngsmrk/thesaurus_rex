@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var wordnik = require('wordnik');
 var routes = require('./routes/index');
 var random_word = require('./routes/random_word');
 

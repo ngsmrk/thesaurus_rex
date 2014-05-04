@@ -3,11 +3,16 @@ var router = express.Router();
 
 var wordnik = require('wordnik');
 
+var dotenv = require('dotenv');
+dotenv.load();
+
 /* GET random_word listing. */
 router.get('/', function(req, res) {
 
+    var secret_key = process.env.WORDNIK_KEY;
+
     var wn = new wordnik({
-        api_key: ''
+        api_key: secret_key
     });
 
     var random_word = 'default';
