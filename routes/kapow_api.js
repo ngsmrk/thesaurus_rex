@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var dotenv = require('dotenv');
-dotenv.load();
-
 var http = require("http");
 
 /* GET upcoming listings */
