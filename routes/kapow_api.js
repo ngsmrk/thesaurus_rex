@@ -7,14 +7,16 @@ dotenv.load();
 var http = require("http");
 
 /* GET upcoming listings */
-router.get('/upcoming', function (req, res) {
+router.get('/*', function (req, res) {
 
-    var options = {
-        host: 'kapow-api.herokuapp.com',
-        path: '/releases/upcoming.json'
-    };
+    url = req.url.replace(/\//g, '');
 
-    http.get(options, function (http_res) {
+    console.log(url);
+
+    full_url = 'http://kapow-api.herokuapp.com/releases/' + url + '.json';
+    console.log(full_url);
+
+    http.get(full_url, function (http_res) {
         // initialize the container for our data
         var data = "";
 
@@ -28,15 +30,14 @@ router.get('/upcoming', function (req, res) {
         http_res.on("end", function () {
 
             var statusCode = http_res.statusCode;
-            console.log("Status code: " + statusCode);
+            console.log("Status code: " + statusCode + " for: " + full_url);
 
             if (statusCode == 200) {
-                console.log(data);
                 res.json(data);
             } else {
-                console.error('problem with request');
+                console.error("problem with request for: " + full_url);
                 res.statusCode = 500;
-                res.json({error: 'Connection failure: ' + statusCode});
+                res.json({error: "Connection failure: " + statusCode});
             }
         });
     });
