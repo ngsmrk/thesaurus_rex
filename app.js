@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var random_word = require('./routes/random_word');
+var kapow_api = require('./routes/kapow_api');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/random_word', random_word);
+app.use('/kapow_api', kapow_api);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
