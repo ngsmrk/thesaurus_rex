@@ -26,6 +26,10 @@ router.get('/', function (req, res) {
             data += chunk;
         });
 
+        req.on('error', function(e) {
+            console.log('problem with request: ' + e.message);
+        });
+
         // this event fires *one* time, after all the `data` events/chunks have been gathered
         http_res.on("end", function () {
 
